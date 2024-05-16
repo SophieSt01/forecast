@@ -67,7 +67,7 @@ async function showForecast(url) {
         }}
     ).addTo(themaLayer.forecast)
 }
-showForecast("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
+//showForecast("https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=47.267222&lon=11.392778");
 
 // auf Kartenklick reagieren
 map.on("click", function(evt){
@@ -76,3 +76,8 @@ map.on("click", function(evt){
 
     //console.log(evt.latlng.lat, evt.latlng.lng)
 });
+
+// wird am anfang angezeigt (Klick auf Innsbruck wird simuliert)
+map.fire("click", {
+    latlng: ibk
+})
