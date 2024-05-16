@@ -40,15 +40,16 @@ async function showForecast(url) {
     //popup erzeugen, dass mit dem wettervorhersagen layer angezeigt wird
     L.geoJSON(jsondata,
         {pointToLayer: function(feature, latlng){
+            let details = feature.properties.timeseries[0].data.instant.details;
             let content =`
             <ul>
-                <li>Luftdruck (hPa): air_pressure_at_sea_level</li>
-                <li>Lufttemperatur (°C): air_temperature</li>
-                <li>Bewölkungsgrad (%): cloud_area_fraction</li>
-                <li>Niederschlag (mm): precipitation_amount</li>
-                <li>relative Luftfeuchtigkeit (%): relative_humidity</li>
-                <li>Windrichtung (°): wind_from_direction</li>
-                <li>Windgeschwindigkeit (km/h): wind_speed</li>
+                <li>Luftdruck (hPa): ${details.air_pressure_at_sea_level}</li>
+                <li>Lufttemperatur (°C): ${details.air_temperature}</li>
+                <li>Bewölkungsgrad (%): ${details.cloud_area_fraction}</li>
+                <li>Niederschlag (mm): ${details.precipitation_amount}</li>
+                <li>relative Luftfeuchtigkeit (%): ${details.relative_humidity}</li>
+                <li>Windrichtung (°): ${details.wind_from_direction}</li>
+                <li>Windgeschwindigkeit (km/h): ${details.wind_speed}</li>
             </ul>  
                 `
             L.popup(latlng, {content: content})
