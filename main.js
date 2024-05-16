@@ -103,7 +103,9 @@ async function loadWind(url){
     // Vorhersagezeitpunkt ermitteln
     let forecastDate = new Date(jsondata[0].header.refTime);
     forecastDate.setHours(forecastDate.getHours()+ jsondata[0].header.forecastTime); //12 h dazuzählen
-    console.log(forecastDate)
+    //console.log(forecastDate)
+    // auf Element mit forecast-date-id (# heißt id) in index.html zugreifen
+    document.querySelector("#forecast-date").innerHTML = `(<a href = "${url}" target="met.no"> Stand ${forecastDate.toLocaleString()}</a>)`;
 
 }
 loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json");
