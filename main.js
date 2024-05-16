@@ -106,6 +106,8 @@ async function loadWind(url){
     //console.log(forecastDate)
     // auf Element mit forecast-date-id (# heißt id) in index.html zugreifen
     document.querySelector("#forecast-date").innerHTML = `(<a href = "${url}" target="met.no"> Stand ${forecastDate.toLocaleString()}</a>)`;
+    //document.querySelector("#map").innerHTML = "heute keine Karte"
+    //document.querySelector("body").innerHTML = "das war's für heute"
 
 }
 loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json");
