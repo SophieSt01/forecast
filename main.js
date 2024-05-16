@@ -46,10 +46,9 @@ async function showForecast(url) {
                 <li>Luftdruck (hPa): ${details.air_pressure_at_sea_level}</li>
                 <li>Lufttemperatur (°C): ${details.air_temperature}</li>
                 <li>Bewölkungsgrad (%): ${details.cloud_area_fraction}</li>
-                <li>Niederschlag (mm): ${details.precipitation_amount}</li>
                 <li>relative Luftfeuchtigkeit (%): ${details.relative_humidity}</li>
                 <li>Windrichtung (°): ${details.wind_from_direction}</li>
-                <li>Windgeschwindigkeit (km/h): ${details.wind_speed}</li>
+                <li>Windgeschwindigkeit (km/h): ${Math.round(details.wind_speed*3.6)}</li>
             </ul>  
                 `
             L.popup(latlng, {content: content})
