@@ -42,7 +42,6 @@ async function showForecast(url) {
         {pointToLayer: function(feature, latlng){
             let details = feature.properties.timeseries[0].data.instant.details;
             let time = new Date(feature.properties.timeseries[0].time);
-
             let content =`
             <h4>Wettervorhersage für ${time.toLocaleString()}</h4>
             <ul>
@@ -54,11 +53,15 @@ async function showForecast(url) {
                 <li>Windgeschwindigkeit (km/h): ${Math.round(details.wind_speed*3.6)}</li>
             </ul>  
                 `;
+            // Wettericons für die nächsten 24 h in 3h-Schritten
             for (let i = 0; i <= 24; i+=3) {
                 let symbol = feature.properties.timeseries[i].data.next_1_hours.summary.symbol_code;
                 let time = new Date(feature.properties.timeseries[i].time);
                 content +=`<img src="icons/${symbol}.svg" alt="${symbol}" style="width:32px" title="${time.toLocaleString()}">`;
             }
+            // Link zum Datendownload
+            content += `
+                <p><a href="${url}" target = "met.no">Daten downloaden</a></p>`
             L.popup(latlng, {content: content})
             .openOn(themaLayer.forecast)
         }}
